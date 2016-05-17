@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Leon on 15.05.2016.
@@ -18,6 +19,7 @@ public class Game extends Canvas implements Runnable {
     public static final int HEIGHT = WIDTH / 16 * 9; // 168.75
     public static final int SCALE = 3;
 
+    private static String title = "Rain";
     private Thread thread;
     private JFrame frame;
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -35,7 +37,7 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         Game game = new Game();
         game.frame.setResizable(false);
-        game.frame.setTitle("Rain");
+        game.frame.setTitle(title);
         game.frame.add(game);
         game.frame.pack();
         game.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -63,17 +65,30 @@ public class Game extends Canvas implements Runnable {
     @Override
     public void run() {
         long lastTime = System.nanoTime();
+        long timer = System.currentTimeMillis();
         final double ns = 1000000000.0 / 60.0;
         double delta = 0;
+        int frames = 0;
+        int updates = 0;
         while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
             while (delta >= 1) {
                 update();
+                updates++;
                 delta--;
             }
             render();
+            frames++;
+
+            if (System.currentTimeMillis() - timer == TimeUnit.SECONDS.toMillis(1)) {
+                timer += TimeUnit.SECONDS.toMillis(1);
+                System.out.println(updates + " ups, " + frames + " fps");
+                frame.setTitle(title + "   |   " + updates + " ups, " + frames + " fps");
+                updates = 0;
+                frames = 0;
+            }
         }
         stop();
     }
