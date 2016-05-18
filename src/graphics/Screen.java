@@ -1,36 +1,40 @@
 package graphics;
 
+import java.util.Random;
+
 /**
  * Created by Leon on 15.05.2016.
  */
 public class Screen {
 
     public int[] pixels;
+    public int[] tiles = new int[64 * 64];
 
     private int width;
     private int height;
-
-    private int counter;
-    private int time;
+    private Random random = new Random();
 
     public Screen(int width, int height) {
         this.width = width;
         this.height = height;
         pixels = new int[width * height];
+
+        for (int i = 0; i < tiles.length; i++) {
+            tiles[i] = random.nextInt(0xFFFFFF);
+        }
     }
 
     public void render() {
-        counter++;
-        if (counter % 44 == 0) {
-            time++;
-        }
         for (int y = 0; y < height; y++) {
+            if (y < 0 || y >= height) {
+                break;
+            }
             for (int x = 0; x < width; x++) {
-                try {
-                    pixels[(time + time * width) % pixels.length] = 0xff00ff;
-                } catch (IndexOutOfBoundsException e) {
-                    time = 0;
+                if (x < 0 || x >= width) {
+                    break;
                 }
+                int tileIndex = (x >> 4) + (y >> 4) * 64;
+                pixels[x + y * width] = tiles[tileIndex];
             }
         }
     }
