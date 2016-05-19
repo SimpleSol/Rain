@@ -26,6 +26,8 @@ public class Game extends Canvas implements Runnable {
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
     private boolean running;
     private Screen screen;
+    private int x;
+    private int y;
 
     public Game() {
         Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
@@ -94,7 +96,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void update() {
-
+        x++;
     }
 
 
@@ -106,7 +108,7 @@ public class Game extends Canvas implements Runnable {
         }
 
         screen.clear();
-        screen.render();
+        screen.render(x, y);
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Graphics g = bs.getDrawGraphics();
