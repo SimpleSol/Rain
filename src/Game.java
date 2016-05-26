@@ -1,4 +1,5 @@
 import graphics.Screen;
+import input.Keyboard;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -28,12 +29,15 @@ public class Game extends Canvas implements Runnable {
     private Screen screen;
     private int x;
     private int y;
+    private Keyboard key;
 
     public Game() {
         Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
         setPreferredSize(size);
         screen = new Screen(WIDTH, HEIGHT);
         frame = new JFrame();
+        key = new Keyboard();
+        addKeyListener(key);
     }
 
     public static void main(String[] args) {
@@ -68,7 +72,7 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
-        final double ns = 1000000000.0 / 60.0;
+        final double ns = 1_000_000_000.0 / 60.0;
         double delta = 0;
         int frames = 0;
         int updates = 0;
@@ -96,6 +100,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void update() {
+        key.update();
         x++;
     }
 

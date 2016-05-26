@@ -30,14 +30,8 @@ public class Screen {
 
     public void render(int xOffset, int yOffset) {
         for (int y = 0; y < height; y++) {
-//            if (y < 0 || y >= height) {
-//                break;
-//            }
             int yy = y + yOffset;
             for (int x = 0; x < width; x++) {
-//                if (x < 0 || x >= width) {
-//                    break;
-//                }
                 int xx = x + xOffset;
                 int tileIndex = ((xx >> 4) & MAP_SIZE_MASK) + ((yy >> 4) & MAP_SIZE_MASK) * MAP_SIZE;
                 pixels[x + y * width] = tiles[tileIndex];
