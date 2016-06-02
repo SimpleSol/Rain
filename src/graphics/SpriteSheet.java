@@ -9,6 +9,7 @@ import java.io.IOException;
  */
 public class SpriteSheet {
 
+    public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 256);
     public final int SIZE;
     public int[] pixels;
 
