@@ -17,17 +17,17 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        keys[e.getKeyCode()] = true;
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        keys[e.getKeyCode()] = false;
+        keys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        keys[e.getKeyCode()] = false;
     }
 
     public void update() {
