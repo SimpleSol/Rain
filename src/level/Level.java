@@ -7,9 +7,9 @@ import graphics.Screen;
  */
 public class Level {
 
-    private int width;
-    private int height;
-    private int[] tiles;
+    protected int width;
+    protected int height;
+    protected int[] tiles;
 
     public Level(int width, int height) {
         this.width = width;
@@ -22,7 +22,7 @@ public class Level {
         loadLevel(path);
     }
 
-    private void generateLevel() {
+    protected void generateLevel() {
 
     }
 
