@@ -5,10 +5,10 @@ package graphics;
  */
 public class Sprite {
 
+    public static Sprite grass = new Sprite(16, 0, 0, null);
     public int[] pixels;
 
     private final int SIZE;
-
     private int x;
     private int y;
     private SpriteSheet sheet;
