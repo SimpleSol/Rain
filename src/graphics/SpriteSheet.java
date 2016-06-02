@@ -9,10 +9,10 @@ import java.io.IOException;
  */
 public class SpriteSheet {
 
+    public final int SIZE;
     public int[] pixels;
 
     private String path;
-    private final int SIZE;
 
     public SpriteSheet(String path, int size) {
         this.SIZE = size;
