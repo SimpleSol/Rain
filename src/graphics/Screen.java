@@ -1,5 +1,7 @@
 package graphics;
 
+import level.tile.Tile;
+
 import java.util.Random;
 
 /**
@@ -28,6 +30,12 @@ public class Screen {
         }
     }
 
+    public void clear() {
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] = 0;
+        }
+    }
+
     public void render(int xOffset, int yOffset) {
         for (int y = 0; y < height; y++) {
             int yp = y + yOffset;
@@ -44,10 +52,25 @@ public class Screen {
         }
     }
 
-    public void clear() {
-        for (int i = 0; i < pixels.length; i++) {
-            pixels[i] = 0;
+    public void renderTile(int xp, int yp, Tile tile) {
+        for (int y = 0; y < tile.sprite.SIZE; y++) {
+            int ya = y + yp;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
