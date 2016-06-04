@@ -6,6 +6,7 @@ package graphics;
 public class Sprite {
 
     public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
+
     public final int SIZE;
     public int[] pixels;
 
