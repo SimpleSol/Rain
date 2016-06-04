@@ -8,6 +8,8 @@ import graphics.Sprite;
  */
 public class Tile {
 
+    public static Tile grass = new GrassTile(Sprite.grass);
+
     public int x;
     public int y;
     public Sprite sprite;
